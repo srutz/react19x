@@ -1,13 +1,13 @@
 import { type ReactNode, useState } from "react";
 
-export function SlowComponent() {
+export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number }) {
   const [flip, setFlip] = useState(0);
 
   const handleFlip = () => {
     setFlip((prev) => prev + 1);
   };
 
-  const TILE_COUNT = 40;
+  const TILE_COUNT = 60;
   const TILE_SIZE = 640 / TILE_COUNT;
   const DURATION = 160;
   const DELAY_PER_TILE = (2 * DURATION) / (TILE_COUNT * TILE_COUNT);
@@ -51,9 +51,10 @@ export function SlowComponent() {
     <div className="relative overflow-hidden border-zinc-600 border-1">
       <button
         type="button"
-        className="grid w-[640px] h-[640px] gap-[1px] relative"
+        className="grid w-[640px] h-[640px] relative"
         onClick={handleFlip}
         style={{
+          gap: `${gap}px`,
           gridTemplateColumns: `repeat(${TILE_COUNT}, ${TILE_SIZE}px)`,
           gridTemplateRows: `repeat(${TILE_COUNT}, ${TILE_SIZE}px)`,
         }}
@@ -62,11 +63,15 @@ export function SlowComponent() {
       </button>
       <button
         type="button"
-        className="absolute bottom-2 right-2 py-1 px-2 bg-black bg-opacity-75 rounded"
+        className="text-sm absolute bottom-2 right-2 py-1 px-2 bg-black bg-opacity-75 rounded"
         onClick={handleFlip}
       >
         Click image to flip
       </button>
-    </div>
+      <div className="absolute top-8 left-8 py-2 px-4 text-lg bg-black bg-opacity-50 rounded text-white
+        rotate-[-10deg] shadow-lg border border-white border-opacity-20">
+        {title}
+      </div>
+    </div >
   );
 }

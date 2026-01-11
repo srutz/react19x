@@ -13,3 +13,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+input {
+  @apply border border-zinc-600 bg-zinc-900 text-white rounded px-2 py-1;
+}
