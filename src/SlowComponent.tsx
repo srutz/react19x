@@ -1,10 +1,14 @@
-import { memo, type ReactNode, useState } from "react";
+import { memo, type ReactNode, useEffect, useState } from "react";
 
 export const SlowComponent = memo(SlowComponent_);
 
 function SlowComponent_({ title, gap = 1 }: { title: string; gap?: number }) {
   const [flip, setFlip] = useState(0);
-  console.log("render SlowComponent", { title, gap });
+  console.log("render SlowComponent", { title, gap, });
+
+  useEffect(() => {
+    console.log("SlowComponent effect", { title, gap });
+  });
 
   const handleFlip = () => {
     setFlip((prev) => prev + 1);
@@ -54,7 +58,7 @@ function SlowComponent_({ title, gap = 1 }: { title: string; gap?: number }) {
     <div className="relative overflow-hidden border-zinc-600 border-1">
       <button
         type="button"
-        className="grid w-[640px] h-[640px] relative"
+        className="grid relative"
         onClick={handleFlip}
         style={{
           gap: `${gap}px`,
