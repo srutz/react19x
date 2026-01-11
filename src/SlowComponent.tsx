@@ -1,13 +1,16 @@
-import { type ReactNode, useState } from "react";
+import { memo, type ReactNode, useState } from "react";
 
-export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number }) {
+export const SlowComponent = memo(SlowComponent_);
+
+function SlowComponent_({ title, gap = 1 }: { title: string; gap?: number }) {
   const [flip, setFlip] = useState(0);
+  console.log("render SlowComponent", { title, gap });
 
   const handleFlip = () => {
     setFlip((prev) => prev + 1);
   };
 
-  const TILE_COUNT = 60;
+  const TILE_COUNT = 64;
   const TILE_SIZE = 640 / TILE_COUNT;
   const DURATION = 160;
   const DELAY_PER_TILE = (2 * DURATION) / (TILE_COUNT * TILE_COUNT);
@@ -19,7 +22,7 @@ export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number 
       "rotateZ(6deg)",
       "rotateY(0deg) rotateZ(0deg)",
       "rotateY(0deg) rotateZ(-180deg)",
-      `translateX(${60 * Math.sin(y * 2 * Math.PI / TILE_COUNT)}px) rotateY(180deg) rotateZ(180deg) scale(0.9)`,
+      `translateX(${60 * Math.sin((y * 2 * Math.PI) / TILE_COUNT)}px) rotateY(180deg) rotateZ(180deg) scale(0.9)`,
     ];
     return transforms[flip % transforms.length];
   };
@@ -68,10 +71,12 @@ export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number 
       >
         Click image to flip
       </button>
-      <div className="absolute top-8 left-8 py-2 px-4 text-lg bg-black bg-opacity-50 rounded text-white
-        rotate-[-10deg] shadow-lg border border-white border-opacity-20">
+      <div
+        className="absolute top-8 left-8 py-2 px-4 text-lg bg-black bg-opacity-50 rounded text-white
+        rotate-[-10deg] shadow-lg border border-white border-opacity-20"
+      >
         {title}
       </div>
-    </div >
+    </div>
   );
 }
