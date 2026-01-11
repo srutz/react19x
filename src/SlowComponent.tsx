@@ -19,7 +19,7 @@ export function SlowComponent() {
       "rotateZ(6deg)",
       "rotateY(0deg) rotateZ(0deg)",
       "rotateY(0deg) rotateZ(-180deg)",
-      `translateX(${200 * Math.sin(y * 2 * Math.PI / TILE_COUNT)}px) rotateY(180deg) rotateZ(180deg) scale(0.9)`,
+      `translateX(${60 * Math.sin(y * 2 * Math.PI / TILE_COUNT)}px) rotateY(180deg) rotateZ(180deg) scale(0.9)`,
     ];
     return transforms[flip % transforms.length];
   };
@@ -48,7 +48,7 @@ export function SlowComponent() {
   }
 
   return (
-    <div className="absolute overflow-hidden">
+    <div className="relative overflow-hidden border-zinc-600 border-1">
       <button
         type="button"
         className="grid w-[640px] h-[640px] gap-[1px] relative"
