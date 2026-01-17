@@ -14,10 +14,17 @@ body {
   flex-direction: column;
 }
 
+@layer base {
+  * {
+    scrollbar-color: #4b5563 #18181b;
+  }
+}
+
+
 input {
   @apply border border-zinc-600 bg-zinc-900 text-white rounded px-2 py-1;
 }
 
-button {
+.button {
   @apply min-w-[150px] bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700;
 }

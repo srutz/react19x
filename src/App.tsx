@@ -30,16 +30,16 @@ export function App() {
   }, [queryClient]);
 
   return (
-    <div className="h-1 grow self-stretch flex flex-col items-center justify-center gap-2">
+    <div className="h-1 grow self-stretch flex flex-col items-center gap-2">
       <div>Modern React / Tanstack-Query</div>
       <div className="flex gap-2 justify-center">
         <button
-          type="button"
+          type="button" className="button"
           onClick={() => setProductId((id) => Math.max(1, id - 1))}
         >
           Previous
         </button>
-        <button type="button" onClick={() => setProductId((id) => id + 1)}>
+        <button type="button" className="button" onClick={() => setProductId((id) => id + 1)}>
           Next
         </button>
       </div>

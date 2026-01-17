@@ -8,8 +8,8 @@ function formatPrice(value: number) {
 
 export function ItemView({ product }: { product: Product }) {
   return (
-    <div className="w-[600px] h-[400px] p-4 rounded-lg shadow-lg bg-black flex flex-col gap-2">
-      <h2 className="text-xl font-bold">{product.title} ({product.id}</h2>
+    <div className="w-[400px] h-[600px] p-4 rounded-lg shadow-lg bg-black flex flex-col gap-2">
+      <h2 className="text-lg font-bold">{product.title} ({product.id}</h2>
       <img
         src={product.image}
         alt={product.title}
