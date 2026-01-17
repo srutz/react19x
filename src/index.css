@@ -17,3 +17,7 @@ body {
 input {
   @apply border border-zinc-600 bg-zinc-900 text-white rounded px-2 py-1;
 }
+
+button {
+  @apply bg-zinc-700 text-white rounded px-3 py-2 hover:bg-zinc-600 cursor-pointer;
+}
