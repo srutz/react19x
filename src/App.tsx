@@ -37,7 +37,7 @@ export function App() {
           Next
         </button>
       </div>
-      <RecipeView recipe={recipe} />
+      {recipe && (<RecipeView recipe={recipe} />)}
     </div>
   );
 }

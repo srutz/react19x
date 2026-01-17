@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/style/useTemplate: because */
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 export type Recipe = {
   id: number;
@@ -32,6 +32,15 @@ export async function fetchRecipe(id: number) {
 }
 
 export function useRecipe(id: number) {
+  return useQuery({
+    queryKey: ['recipe', id],
+    queryFn: async () => fetchRecipe(id),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    placeholderData: (previousData) => previousData,
+  })
+}
+
+export function useSuspenseRecipe(id: number) {
   return useSuspenseQuery({
     queryKey: ['recipe', id],
     queryFn: async () => fetchRecipe(id),
