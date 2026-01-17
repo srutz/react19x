@@ -20,8 +20,12 @@ export type Recipe = {
   mealType: string[];
 };
 
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export async function fetchRecipe(id: number) {
+  //await delay(5_000);
   const response = await fetch("https://dummyjson.com/recipes/" + encodeURIComponent(id))
   const data = await response.json()
   return data as Recipe
