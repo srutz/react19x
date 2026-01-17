@@ -1,19 +1,21 @@
 /** biome-ignore-all lint/style/useTemplate: because */
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { z } from "zod";
 
+const ProductSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  price: z.number(),
+  description: z.string(),
+  category: z.string(),
+  image: z.string(),
+  rating: z.object({
+    rate: z.number(),
+    count: z.number(),
+  }),
+});
 
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+export type Product = z.infer<typeof ProductSchema>;
 
 
 
@@ -25,7 +27,8 @@ export async function fetchProduct(id: number) {
   //await delay(5_000);
   const response = await fetch("https://fakestoreapi.com/products/" + encodeURIComponent(id))
   const data = await response.json()
-  return data as Product
+  //data.price = false;
+  return ProductSchema.parse(data)
 }
 
 export function useProduct(id: number) {
