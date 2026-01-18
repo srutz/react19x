@@ -17,3 +17,7 @@ body {
 input {
   @apply border border-zinc-600 bg-zinc-900 text-white rounded px-2 py-1;
 }
+
+.button {
+  @apply min-w-[180px] border border-zinc-600 rounded-lg bg-black text-white rounded px-2 py-1;
+}
