@@ -1,8 +1,7 @@
-import { memo } from "react";
 import { useApplicationState } from "./useApplicationState";
 
-export const Sidebar = memo(() => {
+export const Sidebar = () => {
   const isSidebarOpen = useApplicationState((state) => state.isSidebarOpen);
   console.log("render sidebar");
   return <div>Sidebar-Open: {isSidebarOpen ? "open" : "closed"}</div>;
-});
+};
