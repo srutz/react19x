@@ -4,6 +4,7 @@ export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number 
   const [flip, setFlip] = useState(0);
 
   const handleFlip = () => {
+    console.log("click b1");
     setFlip((prev) => prev + 1);
   };
 
@@ -61,7 +62,7 @@ export function SlowComponent({ title, gap = 1 }: { title: string, gap?: number 
       >
         {tiles}
       </button>
-      <button
+      <button id="b1"
         type="button"
         className="text-sm absolute bottom-2 right-2 py-1 px-2 bg-black bg-opacity-75 rounded"
         onClick={handleFlip}
